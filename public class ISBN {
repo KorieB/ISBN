@@ -1,0 +1,26 @@
+public class ISBN {
+/**
+ * Determines if given string is a valid ISBN-10 number
+ * @param isbnNumber can be in dash form or all numbers
+ * @return true if parameter is a valid ISBN number, false if parameter is not a valid ISBN number
+ */
+public static boolean validISBN_10(String isbnNumber) {
+
+    isbnNumber = isbnNumber.trim();
+
+    //Remove any dashes in string
+    if(isbnNumber.length() == 13) {
+        isbnNumber = isbnNumber.replaceAll("-", "").trim();
+    }
+
+    if(isbnNumber.length() == 10 && isbnNumber.matches("[0-9]+")) {
+        int sum = 0;
+        for(int i = 10; i > 0; i--) {
+            sum += isbnNumber.charAt(i-1)*i;
+        }
+        if(sum%11 == 0)
+            return true;
+    }
+    return false;
+}
+}
